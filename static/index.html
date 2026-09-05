@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carbon Intelligence Platform</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>🌱 Carbon Intelligence Platform</h1>
+        <p>Environmental Intelligence & Carbon Accounting</p>
+    </header>
+
+
+    <main>
+
+        <!-- EXECUTIVE DASHBOARD -->
+        <h2>Executive Dashboard</h2>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Total Emissions</h3>
+                <div class="value" id="total">0</div>
+                <p>kg CO₂e</p>
+            </div>
+
+            <div class="card">
+                <h3>Scope 1</h3>
+                <div class="value" id="scope1">0</div>
+                <p>kg CO₂e</p>
+            </div>
+
+            <div class="card">
+                <h3>Scope 2</h3>
+                <div class="value" id="scope2">0</div>
+                <p>kg CO₂e</p>
+            </div>
+
+            <div class="card">
+                <h3>Scope 3</h3>
+                <div class="value" id="scope3">0</div>
+                <p>kg CO₂e</p>
+            </div>
+
+        </div>
+
+
+        <!-- CHARTS -->
+        <div class="charts">
+
+            <div class="panel">
+                <h2>Emissions by Scope</h2>
+                <canvas id="scopeChart"></canvas>
+            </div>
+
+            <div class="panel">
+                <h2>Emissions by Activity</h2>
+                <canvas id="activityChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <!-- ADD ACTIVITY -->
+        <section class="panel">
+
+            <h2>Add Activity</h2>
+
+            <div class="form-row">
+
+                <select id="activityType">
+                    <option value="Electricity">Electricity</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Natural Gas">Natural Gas</option>
+                    <option value="Business Travel">Business Travel</option>
+                    <option value="Transportation">Transportation</option>
+                </select>
+
+                <input
+                    id="amount"
+                    type="number"
+                    placeholder="Amount"
+                >
+
+                <input
+                    id="activityDate"
+                    type="date"
+                >
+
+                <button onclick="addActivity()">
+                    Calculate & Add
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- REDUCTION SCENARIO -->
+        <section class="panel">
+
+            <h2>Reduction Scenario</h2>
+
+            <div class="form-row">
+
+                <input
+                    id="reduction"
+                    type="number"
+                    placeholder="Reduction %"
+                >
+
+                <button onclick="calculateScenario()">
+                    Calculate
+                </button>
+
+            </div>
+
+            <div id="scenarioResult"></div>
+
+        </section>
+
+
+        <!-- REDUCTION TARGET -->
+        <section class="panel">
+
+            <h2>Reduction Target & Progress</h2>
+
+            <div class="target-box">
+
+                <div>
+                    <strong>2030 Target</strong>
+                    <p>30% emission reduction</p>
+                </div>
+
+                <div>
+                    <strong>Current Progress</strong>
+                    <p>12% achieved</p>
+                </div>
+
+                <div>
+                    <strong>Status</strong>
+                    <p>On Track</p>
+                </div>
+
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+        </section>
+
+
+        <!-- AI ANALYTICS -->
+        <section class="panel">
+
+            <h2>⚠ AI / Data Analytics</h2>
+
+            <div id="anomalies">
+                Loading analytics...
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITY HISTORY -->
+        <section class="panel">
+
+            <h2>Activity History</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Amount</th>
+                        <th>Scope</th>
+                        <th>Emissions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="activityTable">
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- SUPPLIER ENGAGEMENT -->
+        <section class="panel supplier-section">
+
+            <h2>Supplier Engagement</h2>
+
+            <!-- ADD SUPPLIER -->
+            <div class="form-row">
+
+                <input
+                    id="supplierName"
+                    placeholder="Supplier Name"
+                >
+
+                <input
+                    id="supplierCategory"
+                    placeholder="Category"
+                >
+
+                <input
+                    id="supplierEmissions"
+                    type="number"
+                    placeholder="Emissions"
+                >
+
+                <input
+                    id="supplierScore"
+                    type="number"
+                    placeholder="Carbon Score"
+                >
+
+                <button onclick="addSupplier()">
+                    Add Supplier
+                </button>
+
+            </div>
+
+            <br>
+
+            <!-- SUPPLIER TABLE -->
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Supplier</th>
+                        <th>Category</th>
+                        <th>Emissions</th>
+                        <th>Carbon Score</th>
+                    </tr>
+                </thead>
+
+                <tbody id="supplierTable">
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- DATA QUALITY -->
+        <section class="panel">
+
+            <h2>Data Quality & Audit Status</h2>
+
+            <div class="quality-grid">
+
+                <div>
+                    <strong>Data Completeness</strong>
+                    <p>98%</p>
+                </div>
+
+                <div>
+                    <strong>Validation</strong>
+                    <p>✓ Passed</p>
+                </div>
+
+                <div>
+                    <strong>Calculation Method</strong>
+                    <p>Emission Factor Based</p>
+                </div>
+
+                <div>
+                    <strong>Audit Trail</strong>
+                    <p>✓ Available</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- OUR JAVASCRIPT -->
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
